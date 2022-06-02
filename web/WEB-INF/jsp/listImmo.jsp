@@ -44,7 +44,7 @@ List<ViewImmo> listImmo=(List<ViewImmo>)request.getAttribute("listImmobilisation
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">LISTE DES IMMOBILISATION</h4>
+                                            <h4 class="page-title">LISTE DES IMMOBILISATION </h4>
 						 
 					</div>
 					<div class="row">
@@ -159,7 +159,7 @@ List<ViewImmo> listImmo=(List<ViewImmo>)request.getAttribute("listImmobilisation
 											<tbody>
                                                                                             <%for(int i=0;i<listImmo.size();i++){%>
 												<tr>
-													<td><%out.print(listImmo.get(i).getNom());%></td> 
+													<td><a href="listInfo?id=<%out.print(listImmo.get(i).getId());%>"><%out.print(listImmo.get(i).getNom());%></a></td> 
                                                                                                         <td><%out.print(listImmo.get(i).getNom_artcile());%></td> 
                                                                                                         <td><%out.print(listImmo.get(i).getPrix_aquisation());%></td> 
                                                                                                         <td><%out.print(listImmo.get(i).getDate_achat());%></td> 

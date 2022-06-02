@@ -4,6 +4,7 @@ package spring.web.mvc.project.dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import spring.web.mvc.project.model.BaseModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,7 +24,26 @@ public class HibernateDAO{
         this.sessionFactory = sessionFactory;
     }
 
-   
+   public BaseModel findById(BaseModel model,int id) throws Exception{
+    Session session = null;
+        Transaction transaction =  null;
+        BaseModel bm= new BaseModel(); 
+        try{
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            bm = model.getClass().cast(session.get(model.getClass(),id)); 
+            Hibernate.initialize(bm);
+            transaction.commit();
+            return bm;
+        }catch(Exception e){
+            if(transaction!=null)
+                transaction.rollback();
+            throw e;
+        }finally{
+            if(session!=null)
+                session.close();
+        }
+    }
     public void insert(BaseModel baseModel) throws Exception{
         Session session = null;
         Transaction transaction =  null;

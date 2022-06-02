@@ -16,6 +16,7 @@ import spring.web.mvc.project.model.Immobilisation;
 import spring.web.mvc.project.model.Responsable; 
 import org.springframework.web.bind.annotation.ModelAttribute; 
 import org.springframework.web.bind.annotation.RequestParam;
+import spring.web.mvc.project.model.ViewImmo;
  import spring.web.mvc.project.service.ArticleService; 
 import spring.web.mvc.project.service.ImmoService;
 import spring.web.mvc.project.service.ResponsableService;
@@ -40,8 +41,10 @@ public class MainController {
         return "index";
     }
     
-    @RequestMapping(value="listInfo",method=RequestMethod.GET)
-    public String listInfo() throws Exception{ 
+     @RequestMapping(value="listInfo",method=RequestMethod.GET)
+    public String listInfo(Model m,@RequestParam("id") int id) throws Exception{ 
+        ViewImmo immo=new ViewImmo();
+        m.addAttribute("singleImmo",immoService.findById(immo,id));
         return "listInfo";
     }
     @RequestMapping(value="forms",method=RequestMethod.GET)
@@ -56,6 +59,7 @@ public class MainController {
         m.addAttribute("listImmobilisation",immoService.getAllImmo()); 
         return  "listImmo";
     }
+    
     
     @RequestMapping(value="updateService",method=RequestMethod.GET)
     public String updateService(@RequestParam("id") int id) throws Exception{  
