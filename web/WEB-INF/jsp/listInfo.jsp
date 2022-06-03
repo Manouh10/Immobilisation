@@ -1,7 +1,15 @@
+ 
+<%@page import="spring.web.mvc.project.model.Tableau"%>
+<%@page import="java.util.List"%>
+<%@page import="spring.web.mvc.project.service.ImmoService"%>
+<%@page import="java.util.Date"%>
 
 <%@page import="spring.web.mvc.project.model.ViewImmo"%>
 <%
 ViewImmo immo= (ViewImmo)request.getAttribute("singleImmo");
+// out.print(request.getAttribute("daty"));
+int annee = Integer.parseInt(immo.getDate_service().toString().split("-")[0]);
+List<Tableau> list=ImmoService.getTableau_amortissement(immo);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,10 +71,10 @@ ViewImmo immo= (ViewImmo)request.getAttribute("singleImmo");
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-                                                                        <h4 class="card-title">Article : Ordinateur  </h4>
+                                                                        <h4 class="card-title">Article : <%out.print(immo.getNom());%> (<%out.print(immo.getNom_artcile());%>)  </h4>
 									<h5  >Prix d'aquisition : <%out.print(immo.getPrix_aquisation());%>Ar</h5>
-                                                                        <h5  >Date de service : 07-05-2022</h5>
-                                                                        <h5  >Duree d'utilisation: 5 ans</h5>
+                                                                        <h5  >Date de service : <%out.print(immo.getDate_service());%></h5>
+                                                                        <h5  >Duree d'utilisation: <%out.print(immo.getDuree_ammortissement());%> ans</h5>
                                                                         
 								</div>
 								<div class="card-body">
@@ -75,7 +83,7 @@ ViewImmo immo= (ViewImmo)request.getAttribute("singleImmo");
 											<thead>
 												<tr>
 													<th>Annee</th>
-													<th>Jour</th>
+													<th>Jour</th> 
 													<th>Anterieur</th>
 													<th>Exercice</th>
 													<th>Cumul</th>
@@ -84,14 +92,16 @@ ViewImmo immo= (ViewImmo)request.getAttribute("singleImmo");
 											</thead>
 											 
 											<tbody> 
+                                                                                                    <%for(int i=0;i<list.size();i++) {%>
 												<tr>
-													<td>2022</td>
-													<td>120 J</td>
-													<td>0</td>
-													<td>1000000</td>
-													<td>1000000</td>
-													<td>1000000</td>
-												</tr> 
+													<td><%out.print(annee+i);%></td>
+                                                                                                        <td><%out.print(list.get(i).getJour());%> J</td> 
+                                                                                                        <td><%out.print(list.get(i).getAnterieure());%> Ar</td>
+                                                                                                        <td><%out.print(list.get(i).getExercice());%> Ar</td>
+                                                                                                        <td><%out.print(list.get(i).getCumul());%> Ar</td>
+													<td><%out.print(list.get(i).getVnc());%> Ar</td>
+                                                                                                </tr> 
+                                                                                                <% } %>
 											</tbody>
 										</table>
 									</div>

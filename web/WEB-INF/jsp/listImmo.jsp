@@ -1,4 +1,6 @@
  
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.Date"%>
 <%@page import="spring.web.mvc.project.model.ViewImmo"%>
 <%@page import="spring.web.mvc.project.model.Responsable"%>
 <%@page import="spring.web.mvc.project.model.Article"%>
@@ -8,6 +10,7 @@
 List<Article> listArticle=(List<Article>) request.getAttribute("listArticle");
 List<Responsable> listResponsable=(List<Responsable>) request.getAttribute("listResponsable");  
 List<ViewImmo> listImmo=(List<ViewImmo>)request.getAttribute("listImmobilisation");
+ 
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +47,7 @@ List<ViewImmo> listImmo=(List<ViewImmo>)request.getAttribute("listImmobilisation
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-                                            <h4 class="page-title">LISTE DES IMMOBILISATION </h4>
+						<h4 class="page-title">LISTE DES IMMOBILISATION</h4>
 						 
 					</div>
 					<div class="row">
@@ -79,7 +82,7 @@ List<ViewImmo> listImmo=(List<ViewImmo>)request.getAttribute("listImmobilisation
 													</button>
 												</div>
 												<div class="modal-body">
-                                                                                                    <form action="insertImmo" method="post">
+                                                                                                    <form action="insertImmob" method="post">
 														<div class="row">
 															<div class="col-sm-12">
 																<div class="form-group form-group-default">
@@ -102,6 +105,7 @@ List<ViewImmo> listImmo=(List<ViewImmo>)request.getAttribute("listImmobilisation
 																	<input name="date_achat" id="addOffice" type="date" class="form-control" placeholder=" ">
 																</div>
 															</div>
+                                                                                                                                
                                                                                                                         
                                                                                                                         <div style="margin-top:10px" class="col-sm-12">
 																<div class="form-group form-group-default">
@@ -118,7 +122,7 @@ List<ViewImmo> listImmo=(List<ViewImmo>)request.getAttribute("listImmobilisation
                                                                                                                                          <% } %>
                                                                                                                                 </select>
                                                                                                                         </div>
-                                                                                                                        
+                                                                                                                             
                                                                                                                     <div style="margin-top:10px" class="col-sm-12">
 																<div class="form-group form-group-default">
 																	<label>Duree d'amortissement (Annee)</label>
@@ -159,14 +163,24 @@ List<ViewImmo> listImmo=(List<ViewImmo>)request.getAttribute("listImmobilisation
 											<tbody>
                                                                                             <%for(int i=0;i<listImmo.size();i++){%>
 												<tr>
-													<td><a href="listInfo?id=<%out.print(listImmo.get(i).getId());%>"><%out.print(listImmo.get(i).getNom());%></a></td> 
+                                                                                                    <td>
+                                                                                                         <%if(ImmoService.nullToString(listImmo.get(i).getDate_service())=="No service"){%>
+                                                                                                         <%out.print(listImmo.get(i).getNom());%> 
+                                                                                                         <% } else {%> 
+                                                                                                            <a style="text-decoration:none" href="listInfo?id=<%out.print(listImmo.get(i).getId());%>"><%out.print(listImmo.get(i).getNom());%></a>
+                                                                                                           <% } %>
+                                                                                                    </td> 
                                                                                                         <td><%out.print(listImmo.get(i).getNom_artcile());%></td> 
-                                                                                                        <td><%out.print(listImmo.get(i).getPrix_aquisation());%></td> 
-                                                                                                        <td><%out.print(listImmo.get(i).getDate_achat());%></td> 
+                                                                                                        <td><%out.print(listImmo.get(i).getPrix_aquisation());%> Ar</td> 
+                                                                                                        <td><%out.print(ImmoService.showDate(listImmo.get(i).getDate_achat()));%> </td> 
                                                                                                         <td><%out.print(ImmoService.nullToString(listImmo.get(i).getDate_service()));%></td> 
                                                                                                         <td><%out.print(listImmo.get(i).getNom_responsable());%></td> 
-                                                                                                        <td><%out.print(listImmo.get(i).getDuree_ammortissement());%></td> 
-                                                                                                        <td><a href="updateService?id=<%out.print(listImmo.get(i).getId());%>">Mettre en service</a></td> 
+                                                                                                        <td><%out.print(listImmo.get(i).getDuree_ammortissement());%> Ans</td> 
+                                                                                                        <%if(ImmoService.nullToString(listImmo.get(i).getDate_service())=="No service"){%>
+                                                                                                        <td><a style="text-decoration:none" href="updateService?id=<%out.print(listImmo.get(i).getId());%>">Service</a></td> 
+                                                                                                        <% } else {%>
+                                                                                                          <td><a style="text-decoration:none" href="exportPdf?id=<%out.print(listImmo.get(i).getId());%>">PDF</a></td> 
+                                                                                                        <% } %>
 												</tr> 
                                                                                             <% } %>
                                                                                            

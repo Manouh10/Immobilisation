@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Hajaina/S6/Naina/Code/Immobilisation/src/java/spring/web/mvc/project/controller/MainController.java</file>
-            <file>file:/D:/Hajaina/S6/Naina/Code/Immobilisation/nbproject/build-impl.xml</file>
+            <file>file:/D:/S6/Naina/springWebMvcProject/web/WEB-INF/dispatcher-servlet.xml</file>
+            <file>file:/D:/S6/Naina/springWebMvcProject/web/WEB-INF/jsp/listInfo.jsp</file>
+            <file>file:/D:/S6/Naina/springWebMvcProject/src/java/spring/web/mvc/project/service/ImmoService.java</file>
+            <file>file:/D:/S6/Naina/springWebMvcProject/web/WEB-INF/jsp/listImmo.jsp</file>
+            <file>file:/D:/S6/Naina/springWebMvcProject/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

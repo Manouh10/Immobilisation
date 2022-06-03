@@ -1,6 +1,7 @@
 
 package spring.web.mvc.project.model;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -31,7 +32,7 @@ public class Immobilisation extends BaseModel{
     private int duree_ammortissement;
 
     public Immobilisation() {
-    }
+    } 
 
     public Immobilisation(String nom, int article, int prix_aquisation, String date_achat, String date_service, int responsable, int duree_ammortissement) {
         this.nom = nom;
@@ -41,35 +42,6 @@ public class Immobilisation extends BaseModel{
         this.date_service = date_service;
         this.responsable = responsable;
         this.duree_ammortissement = duree_ammortissement;
-    }
-
-    
-    
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    
-
-    public int getArticle() {
-        return article;
-    }
-
-    public void setArticle(int article) {
-        this.article = article;
-    }
-
-    public int getPrix_aquisation() {
-        return prix_aquisation;
-    }
-
-    public void setPrix_aquisation(int prix_aquisation) {
-        this.prix_aquisation = prix_aquisation;
     }
 
     public String getDate_achat() {
@@ -87,6 +59,31 @@ public class Immobilisation extends BaseModel{
     public void setDate_service(String date_service) {
         this.date_service = date_service;
     }
+    
+    
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    } 
+    
+    public int getArticle() {
+        return article;
+    }
+
+    public void setArticle(int article) {
+        this.article = article;
+    }
+
+    public int getPrix_aquisation() {
+        return prix_aquisation;
+    }
+
+    public void setPrix_aquisation(int prix_aquisation) {
+        this.prix_aquisation = prix_aquisation;
+    } 
 
     public int getResponsable() {
         return responsable;
