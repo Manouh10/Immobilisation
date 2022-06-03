@@ -4,7 +4,7 @@ package spring.web.mvc.project.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
- 
+ import java.util.Date;
 import spring.web.mvc.project.model.BaseModel;
  
 @Entity
@@ -20,10 +20,10 @@ public class ViewImmo extends BaseModel{
     private int prix_aquisation;
             
     @Column(name="date_achat")
-    private String date_achat;
+    private Date  date_achat;
             
     @Column(name="date_service")    
-    private String date_service;
+    private Date date_service;
     
     @Column(name="nom_responsable")  
     private String nom_responsable;
@@ -31,7 +31,7 @@ public class ViewImmo extends BaseModel{
     @Column(name="duree_ammortissement")  
     private int duree_ammortissement;
 
-    public ViewImmo(String nom, String nom_artcile, int prix_aquisation, String date_achat, String date_service, String nom_responsable, int duree_ammortissement) {
+    public ViewImmo(String nom, String nom_artcile, int prix_aquisation, Date date_achat, Date date_service, String nom_responsable, int duree_ammortissement) {
         this.nom = nom;
         this.nom_artcile = nom_artcile;
         this.prix_aquisation = prix_aquisation;
@@ -40,6 +40,8 @@ public class ViewImmo extends BaseModel{
         this.nom_responsable = nom_responsable;
         this.duree_ammortissement = duree_ammortissement;
     }
+
+    
 
     public ViewImmo() {
     }
@@ -67,21 +69,23 @@ public class ViewImmo extends BaseModel{
         this.prix_aquisation = prix_aquisation;
     }
 
-    public String getDate_achat() {
+    public Date getDate_achat() {
         return date_achat;
     }
 
-    public void setDate_achat(String date_achat) {
+    public void setDate_achat(Date date_achat) {
         this.date_achat = date_achat;
     }
 
-    public String getDate_service() {
+    public Date getDate_service() {
         return date_service;
     }
 
-    public void setDate_service(String date_service) {
+    public void setDate_service(Date date_service) {
         this.date_service = date_service;
     }
+
+   
 
     public String getNom_responsable() {
         return nom_responsable;
